@@ -47,8 +47,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Areas <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('/worker/create') }}">Crear Area</a></li>
-                            <li><a href="{{ url('/home') }}">Listar Areas</a></li>
+                            <li><a href="{{ url('/area/create') }}">Crear Area</a></li>
+                            <li><a href="{{ url('/area') }}">Listar Areas</a></li>
                         </ul>
                     </li>
                 </ul>
