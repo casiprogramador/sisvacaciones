@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     {!! Html::style('css/app.css') !!}
+    @yield('style')
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -77,6 +78,6 @@
     <!-- JavaScripts -->
     {!! Html::script('js/jquery.min.js') !!}
     {!! Html::script('js/bootstrap.min.js') !!}
-
+    @yield('javascript')
 </body>
 </html>

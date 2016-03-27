@@ -32,10 +32,15 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::get('/worker/create', 'WorkerController@create');
+    Route::post('/worker/store', 'WorkerController@store');
+    Route::post('/worker/upload',  ['as' => 'worker.upload', 'uses' => 'WorkerController@upload']);
 
     Route::get('/area', 'AreaController@index');
     Route::get('/area/create', 'AreaController@create');
     Route::post('/area/store', 'AreaController@store');
+
+    Route::get('/vacation/create/{id_worker}/{name_worker}', 'VacationController@create');
+    Route::post('/vacation/store', 'VacationController@store');
 
 });
 

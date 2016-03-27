@@ -3,12 +3,63 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
+                <div class="panel-heading">Lista de Trabajadores</div>
                 <div class="panel-body">
-                    You are logged in!
+                    <table class="table table-hover">
+                        <thead>
+                        <tr >
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="success" style="text-align:center" colspan="3">Dias Vacaciones</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Celular</th>
+                            <th>Fecha Entrada</th>
+                            <th>Area</th>
+                            <th>Puesto</th>
+                            <th class="success">Ganados</th>
+                            <th class="success">Tomados</th>
+                            <th class="success">Restantes</th>
+                            <th>Opciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($workers as $worker)
+                        <tr>
+                            <td scope="row">{{$worker->id}}</td>
+                            <td>{{$worker->name}}</td>
+                            <td>{{$worker->cellphone}}</td>
+                            <td>{{$worker->date_in}}</td>
+                            <td>{{$worker->area->name}}</td>
+                            <td>{{$worker->position}}</td>
+                            <td class="success">{{$vacationDays=MyHelper::vacationDays($worker->date_in)}}</td>
+                            <td class="success">{{$vacationTaken=MyHelper::vacationTaken($worker->id)}}</td>
+                            <td class="success">{{$vacationDays-$vacationTaken}}</td>
+                            <td>
+                                <!-- Single button -->
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="{{ url('/worker/edit/'.Crypt::encrypt($worker->id).'/'.Crypt::encrypt($worker->name)) }}">Informacion de {{$worker->name}}</a></li>
+                                        <li><a href="{{ url('/vacation/create/'.Crypt::encrypt($worker->id).'/'.Crypt::encrypt($worker->name)) }}">Asignar Vacaciones</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

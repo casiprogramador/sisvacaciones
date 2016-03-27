@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Worker;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $workers = Worker::all();
 
-        return view('home');
+        return view('home')->with('workers',$workers);
     }
 }

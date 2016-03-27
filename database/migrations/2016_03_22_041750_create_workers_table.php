@@ -16,7 +16,6 @@ class CreateWorkersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('ci');
-            $table->string('ext_ci');
             $table->string('cellphone');
             $table->string('photo');
             $table->date('date_in');

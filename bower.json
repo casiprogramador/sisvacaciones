@@ -1,6 +1,8 @@
 {
-    "name": "SisVacaciones",
-    "dependencies": {
-        "bootstrap": "~3.3.6"
-    }
+  "name": "SisVacaciones",
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.37",
+    "dropzone": "^4.3.0"
+  }
 }
