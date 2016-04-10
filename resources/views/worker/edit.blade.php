@@ -19,10 +19,11 @@
                     </div>
                     <br/>
                     <div class="row">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/worker/store') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/worker/update') }}">
                             {!! csrf_field() !!}
                             <div class="col-md-6 col-md-offset-4 {{ $errors->has('photo') ? ' has-error' : '' }}">
-                                <input type="hidden" id="path-photo" name="photo" value=""/>
+                                <input type="hidden" id="path-photo" name="photo" value="{{$worker->photo}}"/>
+                                <input type="hidden" id="id_worker" name="id_worker" value="{{$worker->id}}"/>
                                 @if ($errors->has('photo'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('photo') }}</strong>
@@ -34,7 +35,7 @@
                                 <label class="col-md-4 control-label">Nombre:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                    <input type="text" class="form-control" name="name" value="{{ $worker->name }}">
 
                                     @if ($errors->has('name'))
                                     <span class="help-block">
@@ -48,7 +49,7 @@
                                 <label class="col-md-4 control-label">CI:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="ci" value="{{ old('ci') }}">
+                                    <input type="text" class="form-control" name="ci" value="{{ $worker->ci }}">
 
                                     @if ($errors->has('ci'))
                                     <span class="help-block">
@@ -62,7 +63,7 @@
                                 <label class="col-md-4 control-label">Numero Celular:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="cellphone" value="{{ old('cellphone') }}">
+                                    <input type="text" class="form-control" name="cellphone" value="{{ $worker->cellphone }}">
 
                                     @if ($errors->has('cellphone'))
                                     <span class="help-block">
@@ -76,7 +77,7 @@
                                 <label class="col-md-4 control-label">Email:</label>
 
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                    <input type="email" class="form-control" name="email" value="{{ $worker->email }}">
 
                                     @if ($errors->has('email'))
                                     <span class="help-block">
@@ -90,7 +91,7 @@
                                 <label class="col-md-4 control-label">Fecha de Ingreso:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="date-in" name="date_in" value="{{ old('date_in') }}">
+                                    <input type="text" class="form-control" id="date-in" name="date_in" value="{{ $worker->date_in }}">
 
                                     @if ($errors->has('date_in'))
                                     <span class="help-block">
@@ -103,7 +104,7 @@
                                 <label class="col-md-4 control-label">Area:</label>
 
                                 <div class="col-md-6">
-                                    {!! Form::select('area_id',['' => 'Seleccione un area...']+$areas,null, array('class' => 'form-control')) !!}
+                                    {!! Form::select('area_id',['' => 'Seleccione un area...']+$areas,$worker->area_id, array('class' => 'form-control')) !!}
 
                                     @if ($errors->has('area_id'))
                                     <span class="help-block">
@@ -117,7 +118,7 @@
                                 <label class="col-md-4 control-label">Cargo:</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="position" value="{{ old('position') }}">
+                                    <input type="text" class="form-control" name="position" value="{{ $worker->position }}">
 
                                     @if ($errors->has('position'))
                                     <span class="help-block">
@@ -130,7 +131,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Registrar Nuevo Empleado
+                                        Guardar Datos de Empleado
                                     </button>
                                 </div>
                             </div>
@@ -175,6 +176,8 @@
         $('#date-in').datetimepicker({
             format: 'DD-MM-YYYY'
         });
+
+        //var myDropzone = new Dropzone("#my-dropzone");
         Dropzone.options.myDropzone = {
             uploadMultiple: false,
             // previewTemplate: '',
@@ -196,14 +199,22 @@
                     $('input[name="pic_url"]').val(res.path);
                     console.log(res.path);
                 });
+                var mockFile = {
+                    name: "photo",
+                    size: 12345
+                };
+                var path_photo = $('#path-photo').attr('value');
+                this.emit("addedfile", mockFile);
+                this.emit("thumbnail", mockFile, path_photo);
             }
         };
-        var myDropzone = new Dropzone("#my-dropzone");
+        $(".dz-progress").remove();
         $('#upload-submit').on('click', function(e) {
             e.preventDefault();
             //trigger file upload select
             $("#my-dropzone").trigger('click');
         });
+
     });
 </script>
 @endsection

@@ -22,6 +22,7 @@ class CreateWorkersTable extends Migration
             $table->date('date_out');
             $table->string('position');
             $table->string('email')->unique();
+            $table->smallInteger('state')->default('0');
             $table->timestamps();
             $table->integer('area_id')->unsigned();
             $table->foreign('area_id')->references('id')->on('areas');

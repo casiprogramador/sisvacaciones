@@ -12,7 +12,7 @@ class WorkerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -53,6 +53,7 @@ class WorkerController extends Controller
         $worker->date_out = 0;
         $worker->position = $request['position'];
         $worker->email = $request['email'];
+        $worker->state = '1';
         $worker->area_id = $request['area_id'];
         $worker->save();
 
@@ -71,5 +72,58 @@ class WorkerController extends Controller
         } else {
             return response()->json(false, 200);
         }
+    }
+
+    public function show($id){
+        try {
+            $decrypted_id = \Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            return redirect('/home');
+        }
+        $worker = Worker::find($decrypted_id);
+        return view('worker.show')->with('worker',$worker);
+    }
+
+    public function edit($id){
+        try {
+            $decrypted_id = \Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            return redirect('/home');
+        }
+        $worker = Worker::find($decrypted_id);
+        $areas = Area::lists('name','id')->toArray();
+        return view('worker.edit')->with('worker',$worker)->with('areas',$areas);
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'ci' => 'required',
+            'cellphone' => 'required',
+            'photo' => 'required',
+            'date_in' => 'required',
+            'position' => 'required',
+            'email' => 'required',
+            'area_id' => 'required'
+        ]);
+
+        $worker = Worker::find($request['id_worker']);
+        $worker->name = $request['name'];
+        $worker->ci = $request['ci'];
+        $worker->cellphone = $request['cellphone'];
+        $worker->photo = $request['photo'];
+        $worker->date_in = date("Y-m-d", strtotime($request['date_in']));
+        $worker->date_out = 0;
+        $worker->position = $request['position'];
+        $worker->email = $request['email'];
+        $worker->area_id = $request['area_id'];
+        $worker->save();
+
+        return redirect('/home');
+    }
+
+    public function state(){
+        return 'hola';
     }
 }

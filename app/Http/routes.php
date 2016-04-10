@@ -22,25 +22,30 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => ['ajax']], function () {
+    Route::post('worker/state', 'ApiController@state');
 });
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-    Route::get('/', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
+    Route::get('/', 'HomeController@welcome');
+    Route::get('/login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
     Route::get('/home', 'HomeController@index');
+
 
     Route::get('/worker/create', 'WorkerController@create');
     Route::post('/worker/store', 'WorkerController@store');
     Route::post('/worker/upload',  ['as' => 'worker.upload', 'uses' => 'WorkerController@upload']);
+    Route::get('/worker/show/{id_worker}', 'WorkerController@show');
+    Route::get('/worker/edit/{id_worker}', 'WorkerController@edit');
+    Route::post('/worker/update', 'WorkerController@update');
 
     Route::get('/area', 'AreaController@index');
     Route::get('/area/create', 'AreaController@create');
     Route::post('/area/store', 'AreaController@store');
 
+
     Route::get('/vacation/create/{id_worker}/{name_worker}', 'VacationController@create');
     Route::post('/vacation/store', 'VacationController@store');
-
 });
 

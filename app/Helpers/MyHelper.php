@@ -30,4 +30,8 @@ class MyHelper {
         $days_taken = Vacation::where('worker_id',$id)->sum('days_taken');
         return $days_taken;
     }
+
+    public static function stateWorker($state){
+        return ($state == 1)? 'ACTIVO' : 'RETIRADO';
+    }
 } 

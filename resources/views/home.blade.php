@@ -51,7 +51,7 @@
                                         <i class="fa fa-bars"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="{{ url('/worker/edit/'.Crypt::encrypt($worker->id).'/'.Crypt::encrypt($worker->name)) }}">Informacion de {{$worker->name}}</a></li>
+                                        <li><a href="{{ url('/worker/show/'.Crypt::encrypt($worker->id)) }}">Informacion de {{$worker->name}}</a></li>
                                         <li><a href="{{ url('/vacation/create/'.Crypt::encrypt($worker->id).'/'.Crypt::encrypt($worker->name)) }}">Asignar Vacaciones</a></li>
                                     </ul>
                                 </div>
