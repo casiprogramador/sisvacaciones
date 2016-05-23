@@ -12,7 +12,7 @@ class CreateVacationTable extends Migration
      */
     public function up()
     {
-        Schema::create('vacation', function (Blueprint $table) {
+        Schema::create('vacations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('days_taken');
             $table->string('reason');

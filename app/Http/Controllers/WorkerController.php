@@ -123,6 +123,21 @@ class WorkerController extends Controller
         return redirect('/home');
     }
 
+    public function remove (Request $request){
+        $this->validate($request, [
+            'id_worker' => 'required',
+            'fecha_retiro' => 'required',
+            'motivo_retiro' => 'required',
+        ]);
+        $worker = Worker::find($request['id_worker']);
+        $worker->state = '0';
+        $worker->date_out = date("Y-m-d", strtotime($request['fecha_retiro']));
+        $worker->reason_retirement = $request['motivo_retiro'];
+        $worker->save();
+        return redirect('/home');
+    }
+
+
     public function state(){
         return 'hola';
     }

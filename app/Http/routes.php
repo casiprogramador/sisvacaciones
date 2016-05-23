@@ -39,6 +39,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/worker/show/{id_worker}', 'WorkerController@show');
     Route::get('/worker/edit/{id_worker}', 'WorkerController@edit');
     Route::post('/worker/update', 'WorkerController@update');
+    Route::post('/worker/remove', 'WorkerController@remove');
 
     Route::get('/area', 'AreaController@index');
     Route::get('/area/create', 'AreaController@create');
@@ -49,3 +50,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/vacation/store', 'VacationController@store');
 });
 
+Route::group(['middleware' => ['api']], function () {
+    Route::post('worker/state', 'ApiController@state');
+});

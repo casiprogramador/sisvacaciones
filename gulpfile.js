@@ -23,5 +23,6 @@ elixir(function(mix) {
         .copy(bowerPath + '/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js', 'public/js')
         .copy(bowerPath + '/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css', 'public/css')
         .copy(bowerPath + '/dropzone/dist/min/dropzone.min.css', 'public/css')
-        .copy(bowerPath + '/dropzone/dist/min/dropzone.min.js', 'public/js');
+        .copy(bowerPath + '/dropzone/dist/min/dropzone.min.js', 'public/js')
+        .copy(bowerPath + '/angular/angular.min.js', 'public/js');
 });

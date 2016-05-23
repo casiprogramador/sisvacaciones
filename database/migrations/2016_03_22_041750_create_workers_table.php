@@ -23,6 +23,7 @@ class CreateWorkersTable extends Migration
             $table->string('position');
             $table->string('email')->unique();
             $table->smallInteger('state')->default('0');
+            $table->text('reason_retirement')->nullable();
             $table->timestamps();
             $table->integer('area_id')->unsigned();
             $table->foreign('area_id')->references('id')->on('areas');

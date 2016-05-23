@@ -193,23 +193,37 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Retirar Trabajador</h4>
             </div>
+            <form role="form" method="POST" action="{{ url('/worker/remove') }}">
+                {!! csrf_field() !!}
             <div class="modal-body">
-                <form role="form" method="POST" action="{{ url('/worker/remove') }}">
+
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Fecha de Retiro:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input type="text" class="form-control" id="date-out" name="fecha_retiro">
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="control-label">Motivo de Retiro:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea class="form-control" id="message-text" name="motivo_retiro"></textarea>
                     </div>
-                </form>
+                    <input type="hidden" name="id_worker" value="{{$worker->id}}"/>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Retirar Trabajador</button>
+                <button type="submit" class="btn btn-primary">Retirar Trabajador</button>
             </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+@endsection
+
+@section('javascript')
+{!! Html::script('js/moment.min.js') !!}
+{!! Html::script('js/bootstrap-datetimepicker.min.js') !!}
+<script type="text/javascript">
+    $('#date-out').datetimepicker({
+        format: 'DD-MM-YYYY'
+    });
+</script>
 @endsection
