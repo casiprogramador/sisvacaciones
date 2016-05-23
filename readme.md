@@ -2,7 +2,7 @@
 
 ##Instalacion
 Para la instalacion primeramente clonar el sistema del repositorio.
-git clone https://github.com/pmarce/sisvacaciones.git
+> git clone https://github.com/pmarce/sisvacaciones.git
 
 ingresar a la carpeta.
 > ```cd sisvacaciones```
