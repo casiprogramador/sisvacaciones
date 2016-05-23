@@ -5,8 +5,20 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Crear Empleado</div>
+                <div class="panel-heading">Registrar
+                    Empleado</div>
                 <div class="panel-body">
+
+                    @if(empty($areas))
+                        <h3 class="text-center">Usted debe crear un area (Ejem Sistema, contabilidad, etc)</h3>
+                        <div class="text-center">
+                            <a href="{{ url('/area/create') }}" class="btn btn-success">
+                                Crear nueva Area
+                            </a>
+                        </div>
+
+                    @else
+
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4">
                             {!! Form::open(['route'=> 'worker.upload', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
@@ -137,6 +149,7 @@
 
                         </form>
                     </div>
+                    @endif
                 </div>
             </div>
 

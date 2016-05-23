@@ -137,6 +137,11 @@ class WorkerController extends Controller
         return redirect('/home');
     }
 
+    public function retirados(){
+        $workers = Worker::where('state',0);
+        return view('worker.retirados')->with('workers',$workers->get());
+    }
+
 
     public function state(){
         return 'hola';

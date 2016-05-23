@@ -39,6 +39,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/worker/show/{id_worker}', 'WorkerController@show');
     Route::get('/worker/edit/{id_worker}', 'WorkerController@edit');
     Route::post('/worker/update', 'WorkerController@update');
+    Route::get('/worker/retirados', 'WorkerController@retirados');
     Route::post('/worker/remove', 'WorkerController@remove');
 
     Route::get('/area', 'AreaController@index');

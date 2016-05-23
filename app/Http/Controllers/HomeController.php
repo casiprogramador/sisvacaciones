@@ -25,9 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $workers = Worker::all();
+        $workers = Worker::where('state',1);
 
-        return view('home')->with('workers',$workers);
+        return view('home')->with('workers',$workers->get());
     }
 
     public function welcome(){

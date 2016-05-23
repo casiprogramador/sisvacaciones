@@ -42,7 +42,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Empleados <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('/worker/create') }}">Registrar Empleado</a></li>
-                            <li><a href="{{ url('/home') }}">Listar Empleado</a></li>
+                            <li><a href="{{ url('/home') }}">Listar Empleados Activos</a></li>
+                            <li><a href="{{ url('/worker/retirados') }}">Listar Empleados Retirados</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
